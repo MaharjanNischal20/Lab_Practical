@@ -59,12 +59,15 @@ int main()
         break;
         case 2:
         dequeue();
+        break;
         case 3:
         display();
+        break;
         default:
         {
             printf("Please Enter appropriate number 1,2,3....Thank You");
         }
+        break;
     }
     }while(n!=0 && n<4);
     return 0;
