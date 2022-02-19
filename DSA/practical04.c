@@ -1,48 +1,52 @@
-//Linear queue
+//Circular Queue
 
-#include <stdio.h>
-#include <conio.h>
-#define MAX 10
-int rear=-1,front=0,item;
-int queue[MAX];
+
+#include<stdio.h>
+#include<conio.h>
+#define MAXSIZE 5
+
+int front,rear,queue[20],item;
 void enqueue()
 {
-    if(rear>=MAX-1)
+    if(front==(rear+1)%MAXSIZE)
     {
-        printf("Queue overflow");
+        printf("Queue is full");
     }
     else
     {
-        printf("Enter the value to be inserted:");
+        printf("\nEnter the item you want to enter:");
         scanf("%d",&item);
-        rear+=1;
+        rear=(rear+1)%MAXSIZE;
         queue[rear]=item;
     }
 }
 void dequeue()
 {
-    if(rear<front)
-    {
-        printf("Queue underrflow");
-    }
+    if(rear==front)
+        {
+            printf("Queueue is empty");
+        } 
     else
     {
-        front+=1;
+        front=(front+1)%MAXSIZE;
+        item=queue[front];
+    printf("\nRemoved number is: %d\n",item);
     }
 }
 void display()
 {
     int i;
-    if(rear<front)
+    if(rear==front)
     {
         printf("queue is empty");
     }
     else
     {
-        for(i=front;i<=rear;i++)
+        for(i=(front+1)%MAXSIZE;i!=rear;i=(i+1)%MAXSIZE)
         {
             printf("%d\t",queue[i]);
         }
+        printf("%d\t",queue[rear]);
     }
 }
 int main()
@@ -50,7 +54,7 @@ int main()
     int n;
     do
     {
-    printf("Select choice /n 1.Enqueue /n 2.Dequeue /n 3.Display");
+    printf("Select choice \n 1.Enqueue \n 2.Dequeue \n 3.Display\n");
     scanf("%d",&n);
     switch(n)
     {
